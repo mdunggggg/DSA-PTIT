@@ -1,0 +1,1 @@
+{"name":"Local: DSA06008","url":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA06008.cpp","tests":[{"id":1678803491918,"input":"1\n3 2\n2 1 6\n1 5","output":""},{"id":1678804180350,"input":"1\n3 2\n2 1 6\n1 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA06008.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: DSA07023","url":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA07023.cpp","tests":[{"id":1675485841998,"input":"2\nI like this program very much\n\nmuch very program this like I\n\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA07023.cpp","group":"local","local":true}

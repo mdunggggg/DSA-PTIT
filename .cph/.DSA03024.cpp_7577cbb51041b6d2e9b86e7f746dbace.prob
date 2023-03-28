@@ -1,0 +1,1 @@
+{"name":"Local: DSA03024","url":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA03024.cpp","tests":[{"id":1675205205684,"input":"1\n\n10\n\n39 55\n\n37 74\n\n0 1\n\n19 25\n\n65 76\n\n51 52\n\n19 21\n\n5 94\n\n46 65\n\n32 40","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA03024.cpp","group":"local","local":true}

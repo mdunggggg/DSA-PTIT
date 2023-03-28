@@ -1,0 +1,1 @@
+{"name":"Local: DSAKT110","url":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSAKT110.cpp","tests":[{"id":1675598894047,"input":"2\n6\n5 5 10 100 10 5\n4\n3 2 7 10","output":""},{"id":1675598978350,"input":"1\n4\n3 2 7 10","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSAKT110.cpp","group":"local","local":true}
