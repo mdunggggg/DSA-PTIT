@@ -7,26 +7,20 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
     string s, t;
-    int k;
-    cin >> k >> s >> t;
-    long long a = 0 , b = 0;
+    cin >> s >> t;
     int n = s.size();
     int m = t.size();
-    for(int i = 0 ; i < n ; ++i){
-        a += (s[i] - '0') * 1ll * pow(k , n - i - 1);
+    int f[n + 5][m + 5] = {};
+    t = " " + t;
+    s = " " + s;
+    for(int i = 0 ; i <= n ; ++i){
+        for(int j = 0 ; j <= m ; ++j){
+            if(i == 0 || j == 0) f[i][j] = 0;
+            else if(s[i] == t[j]) f[i][j] = f[i - 1][j - 1] + 1;
+            else f[i][j] = max(f[i - 1][j], f[i][j - 1]);
+        }
     }
-    for(int i = 0 ; i < m ; ++i){
-        b += (t[i] - '0') * 1ll * pow(k , m - i - 1);
-    }
-   
-    a += b;
-    string res = "";
-    while(a){
-        res += to_string(a % k);
-        a /= k;
-    }
-    reverse(res.begin() , res.end());
-    cout << res << '\n';
+    cout << f[n][m] << '\n';
 }
 int main(){
     Faster();
