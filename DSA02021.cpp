@@ -6,29 +6,35 @@ const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
-    long long n, k, x, a[62], pos = 61;
     string s;
+    long long k;
     cin >> s >> k;
-    n = s.size();
-    s = ' ' + s;
-    a[1] = n;
-    for (int i = 2; i <= 61; i++){
-        if (a[i - 1] * 2 >= 2e18){
-            pos = i - 1;
+    long long n = s.size();
+    vector<long long>a;
+    a.push_back(n);
+    int i = 0;
+    while(true){
+        if(2 * a[i] <= 2e18){
+            a.push_back(2 * a[i]);
+            i++;
+        }
+        else    
             break;
-        }
-        else
-            a[i] = a[i - 1] * 2;
     }
-    while (k > n) {
-        if (a[pos] < k) {
-            long long x = k - a[pos];
-            if (x == 1)
-                k = a[pos - 1];
-            else
-                k = x - 1;
+    int pos = a.size();
+    s = " " + s;
+    --pos;
+    while(k > n){
+        if(a[pos] < k){
+            long long idx = k - a[pos];
+            if(idx != 1){
+                k = idx - 1;
+            }
+            else{
+                k = a[pos - 1] - 1;
+            }
         }
-        pos--;
+        --pos;
     }
     cout << s[k] << '\n';
 }

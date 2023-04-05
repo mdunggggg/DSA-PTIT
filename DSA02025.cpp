@@ -5,39 +5,44 @@ using namespace std;
 const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
-int count(string s1 , string s2){
-    int dd[26] = {};
+vector<string>v;
+int f[15][15];
+int n;
+int calc(string s, string t){
+    int fre[26] = {};
     int count = 0;
-    for(char c : s1){
-        dd[c - 'A'] = 1;
+    for(auto i : s){
+        fre[i - 'A']++;
     }
-    for(char c : s2){
-        if(dd[c - 'A'] == 1){
-            ++count;
-        }
+    for(auto i : t){
+        count += fre[i - 'A'];
     }
     return count;
 }
 void Process(){
-    int n ; cin >> n;
-    vector<string>s(n);
-    for(auto &x : s)
-        getline(cin >> ws , x);
-    sort(s.begin(), s.end());
+    cin >> n;
+    v.resize(n);
+    for(int i = 0 ; i < n ; ++i)
+        cin >> v[i];
+    for(int i = 0 ; i < n ; ++i){
+        for(int j = i + 1 ; j < n ; ++j){
+            f[i][j] = f[j][i] = calc(v[i], v[j]);
+        }   
+    } 
+    int c[n];
+    for(int i = 0 ; i < n ; ++i)
+        c[i] = i;
     int res = 1e9;
-    do{ 
-        int cur = 0, flag = 1;
+    do{
+        int sum = 0;
         for(int i = 0 ; i < n - 1 ; ++i){
-            cur += count(s[i], s[i + 1]);
-            if(cur > res){
-                flag = 0;
+            sum += f[c[i]][c[i + 1]];
+            if(sum >= res)
                 break;
-            }
         }
-        if(flag) res = min(res, cur);
-    }while(next_permutation(s.begin(), s.end()));
-    cout << res << '\n';
-
+        res = min(res, sum);
+    }while(next_permutation(c, c + n));
+    cout << res;
 }
 int main(){
     Faster();

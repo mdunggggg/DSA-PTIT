@@ -5,29 +5,32 @@ using namespace std;
 const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
-int divisors[MAX + 1];
-vector<vector<int>> factors(MAX, vector<int>());
-void DivisorSieve()
-{
- for (int i = 1; i <= MAX; ++i){
-      for (int j = i; j <= MAX; j += i){
-          ++divisors[j];
-          //factors[j].emplace_back(i);
-      }
- }
+int isPrime[MAX+1];
+vector<int> prime;
+void sieve() {
+   
+    isPrime[0] = 1;
+    isPrime[1] = 1;
+    for(int i = 2; i <= sqrt(MAX); ++i) {
+         if(isPrime[i] == 0) {
+            prime.push_back(i);
+             for(int j = i * i; j <= MAX; j += i)
+                 isPrime[j] = 1;
+        }
+    }
 }
 void Process(){
-    int n;
-    cin >> n;
-    long long i = 1;
-    while(divisors[i] != n){
-        ++i;
+    int n; cin >> n;
+    long long k = 0;
+    for(int i = 2 ; i <= sqrt(n); ++i){
+        if(n % i == 0){
+            
+        }
     }
-    cout << i << '\n';
 }
 int main(){
     Faster();
-    DivisorSieve();
+    sieve();
     int t; cin >> t;
     while(t--)
         Process();
