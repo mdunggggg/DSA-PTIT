@@ -5,6 +5,13 @@ using namespace std;
 const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
+long long f[105];
+void Prepare(){
+    f[1] = 10;
+    for(int i = 2 ; i <= 100 ; ++i){
+        
+    }
+}
 void Process(){
     
 }

@@ -6,22 +6,24 @@ const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
-    string s; cin >> s;
+    int n; cin >> n;
+    int a[n];
+    for(int &x : a)
+        cin >> x;
+    int f[n];
     stack<int>st;
-    int ans = 0;
-    int last = 0;
-    int n = s.size();
-    st.push(-1);
+    int last;
     for(int i = 0 ; i < n ; ++i){
-        if(s[i] == '(')
-            st.push(i);
-        else{
+        while(!st.empty() && a[st.top()] <= a[i]){
             st.pop();
-            if(!st.empty()) ans = max(i - st.top(), ans);
-            else st.push(i);
         }
+        if(st.empty()) last = 0;
+        else last = st.top() + 1;
+        cout << i - last + 1 << ' ' ;
+        st.push(i);
     }
-    cout << ans << '\n';
+    cout << '\n';
+  
 }
 int main(){
     Faster();

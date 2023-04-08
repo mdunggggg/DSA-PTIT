@@ -8,20 +8,18 @@ const int MAX = 1e6 + 5;
 void Process(){
     string s; cin >> s;
     stack<int>st;
-    int ans = 0;
-    int last = 0;
     int n = s.size();
-    st.push(-1);
-    for(int i = 0 ; i < n ; ++i){
-        if(s[i] == '(')
-            st.push(i);
-        else{
-            st.pop();
-            if(!st.empty()) ans = max(i - st.top(), ans);
-            else st.push(i);
+    for(int i = 0 ; i <= n ; ++i){
+        st.push(i + 1);
+        if( i == n ||s[i] == 'I' ){
+            while(!st.empty()){
+                cout << st.top();
+                st.pop();
+            }
         }
     }
-    cout << ans << '\n';
+   
+    cout << '\n';
 }
 int main(){
     Faster();

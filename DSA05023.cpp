@@ -7,19 +7,14 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
     string s; cin >> s;
-    stack<int>st;
-    int ans = 0;
-    int last = 0;
+    long long ans = 0;
     int n = s.size();
-    st.push(-1);
+    long long f[n] = {}; 
+    f[-1] = 0;
     for(int i = 0 ; i < n ; ++i){
-        if(s[i] == '(')
-            st.push(i);
-        else{
-            st.pop();
-            if(!st.empty()) ans = max(i - st.top(), ans);
-            else st.push(i);
-        }
+        int x = s[i] - '0';
+        f[i] = f[i - 1] * 10 + (i + 1) * x;
+        ans += f[i];
     }
     cout << ans << '\n';
 }

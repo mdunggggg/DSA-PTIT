@@ -7,18 +7,17 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
     string s; cin >> s;
-    stack<int>st;
+    stack<char>st;
     int ans = 0;
-    int last = 0;
     int n = s.size();
-    st.push(-1);
     for(int i = 0 ; i < n ; ++i){
         if(s[i] == '(')
-            st.push(i);
+            st.push('(');
         else{
-            st.pop();
-            if(!st.empty()) ans = max(i - st.top(), ans);
-            else st.push(i);
+            if(!st.empty()){
+                st.pop();
+                ans += 2;
+            }
         }
     }
     cout << ans << '\n';
