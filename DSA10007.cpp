@@ -9,14 +9,22 @@ int n, m, start;
 int vis[1005];
 vector<int>adj[1005];
 vector<pair<int,int>>ans;
-void dfs(int u){
+void bfs(int u){
     vis[u] = 1;
-    for(int v : adj[u]){
-        if(!vis[v]){
-            ans.push_back({u , v});
-            dfs(v);
-        }
+    queue<int>q;
+    q.push(u);
+    while(!q.empty()){
+        int top = q.front();
+        q.pop();
+        for(int v : adj[top]){
+            if(!vis[v]){
+                vis[v] = 1;
+                ans.push_back({top , v});
+                q.push(v);  
+            }
+         }
     }
+    
 }
 void Process(){
     cin >> n >> m >> start;
@@ -30,7 +38,7 @@ void Process(){
         adj[x].push_back(y);
         adj[y].push_back(x);
     }
-    dfs(start);
+    bfs(start);
     if(ans.size() != n - 1){
         cout << "-1\n";
         return;
