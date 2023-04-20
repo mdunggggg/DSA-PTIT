@@ -23,7 +23,7 @@ void Process(){
             w -= v[i].second;
         }
         else{
-            ans += v[i].first * w / v[i].second;
+            ans += (double)v[i].first * w / v[i].second;
             break;
         }
     }

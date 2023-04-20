@@ -13,21 +13,21 @@ void Process(){
     for(int i = 1 ; i <= n ; ++i){
         f[i][i] = 1;
     }
-    for(int len = 2 ; len <= n ; ++len){
-        for(int i = 1 ; i <= n - len + 1; ++i){
-            int j = i + len - 1;
-            if(len == 2){
-                if(s[i] == s[j]){
-                    f[i][j] = 2;
+    for(int i = 2 ; i <= n ; ++i){
+        for(int j = 1 ; j <= n - i + 1 ; ++j){
+            int k = j + i - 1;
+            if(i == 2){
+                if(s[j] == s[k]){
+                    f[j][k] = 2;
                 }
-                else
-                    f[i][j] = max(f[i + 1][j], f[i][j - 1]);
+                else    
+                    f[j][k] = max(f[j + 1][k], f[j][k - 1]);
             }
-            else if(s[i] == s[j]){
-                f[i][j] = f[i + 1][j - 1] + 2;
+            else if (s[j] == s[k]){
+                f[j][k] = f[j + 1][k - 1] + 2;
             }
-            else   
-                f[i][j] = max(f[i + 1][j], f[i][j - 1]);
+            else 
+                f[j][k] = max(f[j + 1][k], f[j][k - 1]);   
         }
     }
     cout << n - f[1][n] << '\n';

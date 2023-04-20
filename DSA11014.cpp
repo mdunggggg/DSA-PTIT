@@ -51,7 +51,7 @@ void Process(){
     mp.clear();
     while(n--){
         int u, v; char c;
-        cin >> u >> v >> c;
+        cin >> u >> v >> c; 
         if(root == NULL){
             root = new node(u);
             mp[u] = root;
