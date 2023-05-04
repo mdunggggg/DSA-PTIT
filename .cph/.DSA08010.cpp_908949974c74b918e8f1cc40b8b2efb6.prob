@@ -1,0 +1,1 @@
+{"name":"Local: DSA08010","url":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA08010.cpp","tests":[{"id":1681981837313,"input":"3\n\n17\n\n50\n\n100","output":""},{"id":1681981962651,"input":"1\n17","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ADMIN\\Desktop\\DSA\\DSA08010.cpp","group":"local","local":true}

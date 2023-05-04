@@ -6,27 +6,30 @@ const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
-    int n;
-    cin >> n;
+    int n; cin >> n;
     int a[n];
     for(int &x : a)
         cin >> x;
-    vector<int>f(n, 1), g(n, 1);
-    for(int i = 2; i < n ; ++i){
-        for(int j = 1 ; j < i ; ++j){
-            if(a[i] > a[j])
-                f[i] = max(f[i], f[j] + 1);
+    int l[n], r[n];
+    l[0] = 1;
+    for(int i = 1 ; i < n ; ++i){
+        if(a[i] > a[i - 1]){
+            l[i] = l[i - 1] + 1;
         }
+        else 
+            l[i] = 1;
     }
-    for(int i = n - 2; i >= 0 ; --i){
-        for(int j = n - 1 ; j > i ; --j){
-            if(a[i] > a[j])
-                g[i] = max(g[i], g[j] + 1);
+    r[n - 1] = 1;
+    for(int i = n - 2 ; i >= 0 ; --i){
+        if(a[i] > a[i + 1]){
+            r[i] = r[i + 1] + 1;
         }
+        else 
+            r[i] = 1;
     }
     int ans = 0;
     for(int i = 0 ; i < n ; ++i){
-        ans = max(ans, f[i] + g[i] - 1);
+        ans = max(ans, l[i] + r[i] - 1);
     }
     cout << ans << '\n';
 }

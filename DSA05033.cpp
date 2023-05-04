@@ -30,7 +30,7 @@ void Process(){
                 f[j][k] = max(f[j + 1][k], f[j][k - 1]);   
         }
     }
-    cout << n - f[1][n] << '\n';
+    cout << n - f[1][n] << '\n';    
 }
 int main(){
     Faster();
