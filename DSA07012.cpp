@@ -7,20 +7,24 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
     string s; cin >> s;
+    int n = s.size();
     stack<string>st;
-    for(char c : s){
-        if(isalpha(c)){
-            st.push(string(1, c));
+    for(int i = 0 ; i < n ; ++i){
+        if(isalpha(s[i])){
+            st.push(string(1, s[i]));
         }
         else{
             string x = st.top();
             st.pop();
             string y = st.top();
             st.pop();
-            st.push(c + y + x);
+            string cur = "(" + y + s[i] + x + ")";
+            st.push(cur);
         }
     }
-    cout << st.top() << '\n';
+    s = st.top();
+    cout << s << '\n';
+   
 }
 int main(){
     Faster();

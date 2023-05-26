@@ -7,17 +7,19 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 void Process(){
     string s; cin >> s;
-    stack<string>st;
-    for(char c : s){
-        if(isalpha(c)){
-            st.push(string(1, c));
+    int n = s.size();
+    stack<int>st;
+    for(int i = n - 1 ; i >= 0 ; --i){
+        if(isdigit(s[i])){
+            st.push(s[i] - '0');
         }
         else{
-            string x = st.top();
-            st.pop();
-            string y = st.top();
-            st.pop();
-            st.push(c + y + x);
+            int x = st.top(); st.pop();
+            int y = st.top(); st.pop();
+            if(s[i] == '+') st.push(x + y);
+            else if(s[i] == '-') st.push(x - y);
+            else if(s[i] == '*') st.push(x * y);
+            else st.push(x / y);
         }
     }
     cout << st.top() << '\n';

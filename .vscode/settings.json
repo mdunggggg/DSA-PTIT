@@ -13,5 +13,6 @@
         "string_view": "cpp",
         "cmath": "cpp",
         "new": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
