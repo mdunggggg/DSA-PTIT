@@ -5,52 +5,87 @@ using namespace std;
 const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
-int calc(char c){
-    if(c == '(') return 0;
-    if(c == '+' or c == '-') return 1;
-    if(c == '*' or c == '/') return 2;
+int calc(string c){
+    if(c == "(" or c == ")") return 0;
+    if(c == "+" or c == "-") return 1;
+    if(c == "*" or c == "/") return 2;
     return 3;
 }
-int solve(string s){
-    stack<int>st;
-    int n = s.size();
-}
 void Process(){
-    string s; cin >> s;
-    string ans = "";
+    string s;
+    cin >> s;
+    vector<string>v;
     int n = s.size();
-    stack<char>st;
-    for(int i = 0 ; i < n ; ++i){
+    string cur = "";
+    for(int i = 0; i < n ; ++i){
         if(isdigit(s[i])){
-            ans += s[i];
-            ans += " ";
-        }
-        else if(s[i] == '('){
-            st.push('(');
+            while(isdigit(s[i])){
+                cur += s[i];
+                ++i;
+            }
+            --i;
+            v.push_back(cur);
+            cur = "";
         }
         else{
-            if(s[i] == ')'){
-                while(!st.empty() and st.top() != '('){
-                    ans += st.top();
+            v.push_back(string(1, s[i]));
+        }
+    }
+    vector<string>vv;
+    n = v.size();
+    stack<string>st;
+    for(int i = 0 ; i < n ; ++i){
+        if(isdigit(v[i][0])){
+            vv.push_back(v[i]);
+        }
+        else if(v[i] == "("){
+            st.push("(");
+        }
+        else{
+            if(v[i] == ")"){
+                while(!st.empty() and st.top() != "("){
+                    vv.push_back(st.top());
                     st.pop();
                 }
-                st.pop();
             }
             else{
-                while(!st.empty() and calc(s[i]) <= calc(st.top())){
-                    ans += st.top();
+                while(!st.empty() and calc(v[i]) <= calc(st.top())){
+                    vv.push_back(st.top());
                     st.pop();
                 }
-                st.push(s[i]);
+                st.push(v[i]);
             }
         }
     }
     while(!st.empty()){
-        ans += st.top();
+        vv.push_back(st.top());
         st.pop();
     }
-    cout << ans << '\n';
-   // cout << solve(ans) << '\n';
+    stack<long long>st2;
+    n = vv.size();
+    for(int i = 0 ; i < n ; ++i){
+        if(isdigit(vv[i][0])){
+            st2.push(stol(vv[i]));
+        }
+        else{
+            long long x = st2.top();
+            st2.pop(); 
+            long long y = st2.top();
+            st2.pop();
+            if(vv[i] == "+"){
+                st2.push(x + y);
+            }
+            else if(vv[i] == "-"){
+                st2.push(y - x);
+            }
+            else if(vv[i] == "*"){
+                st2.push(x * y);
+            }
+            else st2.push(y / x);
+        }
+    }
+    cout << st2.top() << '\n';
+
 }
 int main(){
     Faster();
