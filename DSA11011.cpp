@@ -5,12 +5,11 @@ using namespace std;
 const double PI = 2 * acos(0);
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
-int hMax = 0;
 struct node{
-    int val;
+    int x;
     node *left, *right;
-    node(int x){
-        val = x;
+    node(int val){
+        x = val;
         left = right = NULL;
     }
 };
@@ -20,44 +19,38 @@ void make(node *root, int u, int v, char c){
 }
 void find(node *root, int u, int v, char c){
     if(root == NULL) return;
-    if(root-> val == u){
+    if(root->x == u){
         make(root, u, v, c);
     }
     else{
-        find(root->left, u, v, c);
+        find(root->left, u, v , c);
         find(root->right, u, v, c);
     }
 }
-bool check(node *root, int h){
-    if(root == NULL) return true;
+bool check(node *root){
     if(root->left == NULL and root->right == NULL){
-        if(hMax == 0){
-            hMax = h;
-            return true;
-        }
-        else{
-            return hMax == h;
-        }
+        return true;
     }
-    else return check(root->left, h + 1) and check(root->right, h + 1);
+    else if(root->left != NULL and root->right != NULL){
+        return check(root->left) and check(root->right);
+    }
+    else return false;
 }
 void Process(){
-    int n; cin >> n;
+    int n ; cin >> n;
     node *root = NULL;
-    while(n--){
+    for(int i = 0 ; i < n ; ++i){
         int u, v; char c;
         cin >> u >> v >> c;
         if(root == NULL){
             root = new node(u);
-            make(root, u, v, c);
+            make(root, u , v , c);
         }
-        else 
+        else{
             find(root, u, v, c);
+        }
     }
-    hMax = 0;
-    cout << check(root, 0) << '\n';
-   
-
+    cout << check(root) << '\n';
 }
 int main(){
     Faster();
@@ -65,4 +58,3 @@ int main(){
     while(t--)
         Process();
 }
-    
